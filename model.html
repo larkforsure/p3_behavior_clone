@@ -11751,7 +11751,8 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="2-issues">2 issues<a class="anchor-link" href="#2-issues">&#182;</a></h2><p>1) Withtout a joystick, the simulator only generates misleading datas. The steering values captured by the keyboard are mostly "-1", "1", "0", which are all wrong. So when the initial datas present from the class are not enough to cover some steep corners, I find no good way to generate trainning data except those would overfit the network ( to deal with steep corners ).</p>
+<h2 id="The-recored-simulator-video-on-track-1">The recored simulator video on track 1<a class="anchor-link" href="#The-recored-simulator-video-on-track-1">&#182;</a></h2><p><a href="https://youtu.be/8RYJnvcv4sM">https://youtu.be/8RYJnvcv4sM</a></p>
+<h2 id="Two-issues">Two issues<a class="anchor-link" href="#Two-issues">&#182;</a></h2><p>1) Withtout a joystick, the simulator only generates misleading datas. The steering values captured by the keyboard are mostly "-1", "1", "0", which are all wrong. So when the initial datas present from the class are not enough to cover some steep corners, I find no good way to generate trainning data except those would overfit the network ( to deal with steep corners ).</p>
 <p>2) The drive.py can only access the "center" camera image. I know it would not be a common way, but was trying to explore a network with depth=9 input ( ("center","left","right") * RGB ). I was hoping through this way can retain the info in the network that each 3 images are actually from the same frame</p>
 <p>*) anyway I observe the car can succesfully complete at least 6 rounds, by using some overfitting datas</p>
 

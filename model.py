@@ -1,7 +1,10 @@
 
 # coding: utf-8
 
-# ## 2 issues  
+# ## The recored simulator video on track 1
+# https://youtu.be/8RYJnvcv4sM 
+# 
+# ## Two issues  
 #     
 # 1) Withtout a joystick, the simulator only generates misleading datas. The steering values captured by the keyboard are mostly "-1", "1", "0", which are all wrong. So when the initial datas present from the class are not enough to cover some steep corners, I find no good way to generate trainning data except those would overfit the network ( to deal with steep corners ).    
 #     
