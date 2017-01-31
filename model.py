@@ -16,7 +16,7 @@
 # 
 # Peek at what's the feature datas look like. It seems the only useful data is "steering"    
 
-# In[267]:
+# In[1]:
 
 import csv
 import matplotlib.pyplot as plt
@@ -66,7 +66,7 @@ plt.show()
 # 
 # Peek what the input images looks like    
 
-# In[268]:
+# In[2]:
 
 import numpy as np
 import cv2
@@ -109,7 +109,7 @@ print("image shape is: ", image_c.shape)
 # 
 # after the cropping, the image shape becomes (95, 320, 3)    
 
-# In[269]:
+# In[3]:
 
 import numpy as np
 import cv2
@@ -164,7 +164,7 @@ input_shape = image_l.shape
 # 
 # Then the combined image shape becomes (95, 320, 9)
 
-# In[270]:
+# In[4]:
 
 import random
 
@@ -210,7 +210,7 @@ print("combined image shape is: ", image_3.shape)
 # The datas are shuffled before the spliting, as newly captured datas is beind the datas from the class
 #   
 
-# In[283]:
+# In[5]:
 
 import random
 
@@ -234,22 +234,22 @@ print("New nuumber of validation examples =", len(valid_data))
 # &emsp; a) the validation data need to fill in one dimention in the front , so can compare with batch data, e.g. ( None, 1234, 4353, 9 ) , ( None, 0.1243)  
 # &emsp; b) the generated data shouldn't be limitted to len(data) , or the keras will start to complain about " generator outputs None data" from the second epoch   
 
-# In[291]:
+# In[6]:
 
 import random
 
-# if left camera, correct the steering by + 0.2
-# if right camera, correct the steering by - 0.2
+# if left camera, correct the steering by + 0.25
+# if right camera, correct the steering by - 0.25
 def process_steering(csv_item, direction):
     data = float(csv_item["steering"])
-    #if abs(data) < 0.01:
-    #    data = 0.0
     if direction == "left": 
-        return data + 0.25
+        data += 0.25
     elif direction == "right":
-        return data - 0.25
-    else: # "center"
-        return data
+        data -= 0.25
+    # filter out jitter data 
+    #if abs(data) < 0.01:
+    #    data = 0.0     
+    return data
 
 # for validation data , cover all datas, no random picks    
 def traverse_data_generator(csv_data):
@@ -317,7 +317,7 @@ print("shuffled steering batch:\n", y)
 #   
 # The optimization method is the default "adam", the error function is "mse" which looks like not that useful. So I spared a very small amount of validation data set   
 
-# In[289]:
+# In[7]:
 
 from keras.models import Sequential
 from keras.layers import Conv2D, Flatten, MaxPooling2D, Activation, Dropout, Dense
@@ -368,7 +368,7 @@ model.summary()
 # The batch_size is 128 as 256 will overflow GPU.   
 # The EPOCH is 5. From the validation lose value, a larger EPOCH could continue to give better results.   
 
-# In[274]:
+# In[8]:
 
 import os
 import json
@@ -386,7 +386,7 @@ def save_model(file_model, file_weights):
     print("\nmodel saved in files: ", file_model, file_weights)
 
 
-# In[290]:
+# In[9]:
 
 BATCH_SIZE = 128
 valid_gen = traverse_data_generator(valid_data)
